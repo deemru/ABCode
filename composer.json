@@ -1,0 +1,21 @@
+{
+    "name": "deemru/abcode",
+    "description": "ABC (alphabet) encode/decode",
+    "keywords": [ "base62", "base58", "base48", "base24", "base16", "base10" ],
+    "homepage": "https://github.com/deemru/ABCode",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dmitrii Pichulin",
+            "email": "deem@deem.ru"
+        }
+    ],
+    "require": {
+        "php": "^5.4",
+        "ext-gmp": "*"
+    },
+    "autoload": {
+        "psr-4": { "deemru\\": "" }
+    }
+}
