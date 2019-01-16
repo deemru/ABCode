@@ -14,6 +14,22 @@ $ABCs = [
 
 $n = count( $ABCs );
 
+function ezrnd( $size )
+{
+    static $random_bytes;
+
+    if( !isset( $choice ) )
+        $random_bytes = function_exists( 'random_bytes' ) ? true : false;
+
+    if( $random_bytes )
+        return random_bytes( $size );
+    
+    $rnd = '';
+    while( $size-- )
+        $rnd .= chr( mt_rand( 0, 255 ) );
+    return $rnd;
+}
+
 $probes = 0;
 for( $i = 0; $i < $n - 1; $i++ )
 for( $j = $i + 1; $j < $n; $j++ )
@@ -28,7 +44,7 @@ for( $j = $i + 1; $j < $n; $j++ )
     while( microtime( true ) - $t < 0.337 )
     {
         $strlen = mt_rand( 0, 16 );
-        $source = $strlen ? random_bytes( $strlen ) : '';
+        $source = $strlen ? ezrnd( $strlen ) : '';
 
         $encoded_i = $abcode_i->encode( $source );
         $encoded_j = $abcode_j->encode( $source );
@@ -61,3 +77,4 @@ for( $j = $i + 1; $j < $n; $j++ )
 }
 
 echo "\nSUCCESS ($probes tests passed)";
+sleep( 3 );
