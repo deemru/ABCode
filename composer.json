@@ -1,7 +1,7 @@
 {
     "name": "deemru/abcode",
     "description": "ABC (alphabet) encode/decode",
-    "keywords": [ "base62", "base58", "base48", "base24", "base16", "base10" ],
+    "keywords": [ "base62", "base58", "base52", "base36", "base26", "baseNNN", "baseNN", "baseN" ],
     "homepage": "https://github.com/deemru/ABCode",
     "type": "library",
     "license": "MIT",
@@ -12,10 +12,15 @@
         }
     ],
     "require": {
-        "php": "^5.4",
+        "php": ">=5.4",
         "ext-gmp": "*"
     },
     "autoload": {
-        "psr-4": { "deemru\\": "" }
+        "psr-4": { "deemru\\": "src/" }
+    },
+    "scripts": {
+        "test": [
+            "@php test/selftest.php"
+        ]
     }
 }
