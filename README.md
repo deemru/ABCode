@@ -1,6 +1,6 @@
 # ABCode
 
-[![packagist](https://img.shields.io/packagist/v/deemru/abcode.svg)](https://packagist.org/packages/deemru/abcode) [![php-v](https://img.shields.io/packagist/php-v/deemru/abcode.svg)](https://packagist.org/packages/deemru/abcode)  [![travis](https://img.shields.io/travis/deemru/ABCode.svg?label=build/test)](https://travis-ci.org/deemru/ABCode) [![codacy](https://img.shields.io/codacy/grade/d3b953106fa141c7a85c5a369fe2062b.svg?label=codacy)](https://app.codacy.com/project/deemru/ABCode/dashboard) [![license](https://img.shields.io/packagist/l/deemru/abcode.svg)](https://packagist.org/packages/deemru/abcode)
+[![packagist](https://img.shields.io/packagist/v/deemru/abcode.svg)](https://packagist.org/packages/deemru/abcode) [![php-v](https://img.shields.io/packagist/php-v/deemru/abcode.svg)](https://packagist.org/packages/deemru/abcode)  [![travis](https://img.shields.io/travis/deemru/ABCode.svg?label=travis)](https://travis-ci.org/deemru/ABCode) [![codacy](https://img.shields.io/codacy/grade/d3b953106fa141c7a85c5a369fe2062b.svg?label=codacy)](https://app.codacy.com/project/deemru/ABCode/dashboard) [![license](https://img.shields.io/packagist/l/deemru/abcode.svg)](https://packagist.org/packages/deemru/abcode)
 
 [ABCode](https://github.com/deemru/secqru) is a universal (single byte per character) alphabet converter for PHP.
 
@@ -28,6 +28,11 @@ $data = $abcode->decode( $data );
 if( $data !== 'otah2_en3_o22ABhhrroA1eCAC3ronBn3t2-o' )
     exit( 1 );
 ```
+
+## Requirements
+
+- [PHP](http://php.net) >=5.4
+- [GMP](http://php.net/manual/en/book.gmp.php)
 
 ## Installation
 
