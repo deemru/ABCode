@@ -4,6 +4,24 @@ echo "ABCode test:\n";
 require __DIR__ . '/../vendor/autoload.php';
 use deemru\ABCode;
 
+// Built in base58
+$data = ABCode::base58()->encode( 'Hello, world!' );
+if( $data !== '72k1xXWG59wUsYv7h2' )
+    exit( 1 );
+
+// Convert strings to your alphabet
+$abcode = new ABCode( 'my_ABC' );
+$data = $abcode->encode( $data );
+if( $data !== 'BAAy_Cmm_BA_AC_BCA_A_ymymCCmyyBBABBACCyBm___mA_BAm_yA__' )
+    exit( 1 );
+
+// Convert between alphabets
+$abcode = new ABCode( 'my_ABC', 'another_ABC-123' );
+$data = $abcode->decode( $data );
+if( $data !== 'otah2_en3_o22ABhhrroA1eCAC3ronBn3t2-o' )
+    exit( 1 );
+
+// Cross test alphabets
 $ABCs = [
     '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
     '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz',

@@ -28,6 +28,21 @@ class ABCode
     }
 
     /**
+     * Returns static instance of ABCode with bitcoin base58 encoding alphabet
+     *
+     * @return ABCode
+     */
+    static public function base58()
+    {
+        static $base58;
+
+        if( !isset( $base58 ) )
+            $base58 = new ABCode( '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz' );
+
+        return $base58;
+    }
+
+    /**
      * Encodes data from the base alphabet to the encoding alphabet
      *
      * @param  string $data
