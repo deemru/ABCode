@@ -36,7 +36,7 @@ function ezrnd( $size )
 {
     static $random_bytes;
 
-    if( !isset( $choice ) )
+    if( !isset( $random_bytes ) )
         $random_bytes = function_exists( 'random_bytes' ) ? true : false;
 
     if( $random_bytes )

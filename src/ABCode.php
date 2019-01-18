@@ -51,7 +51,7 @@ class ABCode
      */
     public function encode( $data )
     {
-        return $this->abcode( $data, $this->b, $this->bq, $this->bmap, $this->a, $this->aq, $this->amap );
+        return $this->abcode( $data, $this->b, $this->bq, $this->bmap, $this->a, $this->aq );
     }
 
     /**
@@ -63,7 +63,7 @@ class ABCode
      */
     public function decode( $data )
     {
-        return $this->abcode( $data, $this->a, $this->aq, $this->amap, $this->b, $this->bq, $this->bmap );
+        return $this->abcode( $data, $this->a, $this->aq, $this->amap, $this->b, $this->bq );
     }
 
     private function map( $abc )
@@ -74,7 +74,7 @@ class ABCode
         return $map;
     }
 
-    private function abcode( $data, $from, $fromq, $frommap, $to, $toq, $tomap )
+    private function abcode( $data, $from, $fromq, $frommap, $to, $toq )
     {
         $n = strlen( $data );
         $z = '';
