@@ -21,7 +21,7 @@ class ABCode
 
         $this->a = $abc;
         $this->aq = strlen( $this->a );
-        $this->amap = $this->map( $abc );        
+        $this->amap = $this->map( $abc );
         $this->b = $base;
         $this->bq = strlen( $this->b );
         $this->bmap = $this->map( $base );
@@ -109,9 +109,29 @@ class ABCode
         }
         else
         {
-            $b = gmp_init( $frommap[ $data[0] ] );
-            for( $i = 1; $i < $n; $i++ )
-                $b = gmp_add( $frommap[ $data[$i] ], gmp_mul( $b, $fromq ) );
+            $max = (int)( PHP_INT_MAX / $fromq ) - 1;
+            $tq = 1;
+            for( $i = 0; $i < $n; $i++ )
+            {
+                if( $tq === 1 )
+                {
+                    $t = $frommap[ $data[$i] ];
+                    $tq = $fromq;
+                    continue;
+                }
+
+                $t = $t * $fromq + $frommap[ $data[$i] ];
+                $tq *= $fromq;
+
+                if( $tq > $max )
+                {
+                    $b = isset( $b ) ? gmp_add( gmp_mul( $b, $tq ), $t ) : gmp_init( $t );
+                    $tq = 1;
+                }
+            }
+
+            if( $tq !== 1 )
+                $b = isset( $b ) ? gmp_add( gmp_mul( $b, $tq ), $t ) : gmp_init( $t );
         }
 
         $data = '';
