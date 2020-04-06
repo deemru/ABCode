@@ -61,8 +61,14 @@ for( $j = $i + 1; $j < $n; $j++ )
     $probes_ij = 0;
     while( microtime( true ) - $t < 0.337 )
     {
-        $strlen = mt_rand( 0, 16 );
-        $source = $strlen ? ezrnd( $strlen ) : '';
+        if( $probes_ij === 0 )
+            $source = '';
+        else if( $probes_ij === 1 )
+            $source = chr( 1 ) . str_repeat( chr( 0 ), 31 );
+        else if( $probes_ij === 2 )
+            $source = str_repeat( chr( 0 ), 1 + mt_rand( 1, 17 ) );
+        else
+            $source = ezrnd( mt_rand( 1, 17 ) );
 
         $encoded_i = $abcode_i->encode( $source );
         $encoded_j = $abcode_j->encode( $source );

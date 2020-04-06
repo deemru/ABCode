@@ -140,7 +140,7 @@ class ABCode
             list( $b, $mod ) = gmp_div_qr( $b, $toq );
             $data .= $to[ gmp_intval( $mod ) ];
         }
-        while( gmp_intval( $b ) !== 0 );
+        while( gmp_sign( $b ) !== 0 );
 
         return strrev( $data );
     }
