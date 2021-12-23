@@ -104,8 +104,7 @@ class ABCode
     {
         if( $fromq === 256 )
         {
-            $b = bin2hex( $data );
-            $b = gmp_init( $b, 16 );
+            $b = gmp_init( bin2hex( $data ), 16 );
         }
         else
         {
@@ -132,6 +131,14 @@ class ABCode
 
             if( $tq !== 1 )
                 $b = isset( $b ) ? gmp_add( gmp_mul( $b, $tq ), $t ) : gmp_init( $t );
+        }
+
+        if( $toq === 256 )
+        {
+            $data = gmp_strval( $b, 16 );
+            if( strlen( $data ) & 1 !== 0 )
+                return hex2bin( '0' . $data );
+            return hex2bin( $data );
         }
 
         $data = '';
