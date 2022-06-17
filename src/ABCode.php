@@ -84,7 +84,7 @@ class ABCode
             else
                 break;
 
-        if( $i == $n )
+        if( $i === $n )
             return $z;
 
         if( $i )
@@ -93,6 +93,7 @@ class ABCode
             $n -= $i;
         }
 
+        if( $fromq !== 256 )
         for( $i = 0; $i < $n; $i++ )
             if( !isset( $frommap[ $data[$i] ] ) )
                 return false;
@@ -109,23 +110,25 @@ class ABCode
         else
         {
             $max = (int)( PHP_INT_MAX / $fromq ) - 1;
-            $tq = 1;
-            for( $i = 0; $i < $n; $i++ )
+            $t = $frommap[ $data[0] ];
+            $tq = $fromq;
+            for( $i = 1; $i < $n; $i++ )
             {
-                if( $tq === 1 )
-                {
-                    $t = $frommap[ $data[$i] ];
-                    $tq = $fromq;
-                    continue;
-                }
-
                 $t = $t * $fromq + $frommap[ $data[$i] ];
                 $tq *= $fromq;
 
                 if( $tq > $max )
                 {
                     $b = isset( $b ) ? gmp_add( gmp_mul( $b, $tq ), $t ) : gmp_init( $t );
-                    $tq = 1;
+
+                    if( ++$i === $n )
+                    {
+                        $tq = 1;
+                        break;
+                    }
+
+                    $t = $frommap[ $data[$i] ];
+                    $tq = $fromq;
                 }
             }
 
