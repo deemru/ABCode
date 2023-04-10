@@ -4,6 +4,13 @@ namespace deemru;
 
 class ABCode
 {
+    private $a;
+    private $aq;
+    private $amap;
+    private $b;
+    private $bq;
+    private $bmap;
+
     /**
      * Creates ABCode instance
      * 
