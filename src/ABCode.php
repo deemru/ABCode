@@ -20,11 +20,7 @@ class ABCode
     public function __construct( $abc, $base = null )
     {
         if( !isset( $base ) )
-        {
-            $base = str_pad( '', 256 );
-            for( $i = 0; $i < 256; $i++ )
-                $base[$i] = chr( $i );
-        }
+            $base = implode( '', array_map( 'chr', range( 0, 255 ) ) );
 
         $this->a = $abc;
         $this->aq = strlen( $this->a );
@@ -146,7 +142,7 @@ class ABCode
         if( $toq === 256 )
         {
             $data = gmp_strval( $b, 16 );
-            if( strlen( $data ) & 1 !== 0 )
+            if( ( strlen( $data ) & 1 ) !== 0 )
                 return hex2bin( '0' . $data );
             return hex2bin( $data );
         }
